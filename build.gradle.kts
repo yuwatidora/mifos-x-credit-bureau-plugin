@@ -1,6 +1,6 @@
 plugins {
 	java
-	id("org.springframework.boot") version "3.5.5"
+	id("org.springframework.boot") version "4.0.3"
 	id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -43,19 +43,19 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-jersey")
 
 	//Hex
-	implementation("commons-codec:commons-codec:1.19.0")
+	implementation("commons-codec:commons-codec:1.21.0")
 
 	// API Documentation
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.11")
-	implementation("io.swagger.core.v3:swagger-jaxrs2:2.2.36")
-	implementation("io.swagger.core.v3:swagger-core-jakarta:2.2.36")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.2")
+	implementation("io.swagger.core.v3:swagger-jaxrs2:2.2.41")
+	implementation("io.swagger.core.v3:swagger-core-jakarta:2.2.44")
 
 
 	// Jakarta REST / Jersey (JAX-RS)
 	implementation("jakarta.ws.rs:jakarta.ws.rs-api:4.0.0")
-	implementation("org.glassfish.jersey.containers:jersey-container-servlet:3.1.11")
-	implementation("org.glassfish.jersey.core:jersey-server:3.1.11")
-	implementation("org.glassfish.jersey.inject:jersey-hk2:3.1.11")
+	implementation("org.glassfish.jersey.containers:jersey-container-servlet:4.0.2")
+	implementation("org.glassfish.jersey.core:jersey-server:4.0.2")
+	implementation("org.glassfish.jersey.inject:jersey-hk2:4.0.2")
 
 	// Database & ORM
 	implementation("org.liquibase:liquibase-core")
@@ -66,7 +66,7 @@ dependencies {
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
 
 	// Cryptography
-	implementation("org.bouncycastle:bcprov-jdk18on:1.81")
+	implementation("org.bouncycastle:bcprov-jdk18on:1.83")
 
 	// Lombok
 	compileOnly("org.projectlombok:lombok")
