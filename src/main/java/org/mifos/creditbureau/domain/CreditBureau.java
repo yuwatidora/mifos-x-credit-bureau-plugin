@@ -6,14 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Entity representing a Credit Bureau Organization.
- */
+/** Entity representing a Credit Bureau Organization. */
 @Entity
 @Table(name = "credit_bureau")
 @Getter
@@ -22,23 +16,21 @@ import java.util.Map;
 @AllArgsConstructor
 public class CreditBureau {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
+  private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String creditBureauName;
+  @Column(name = "name", nullable = false)
+  private String creditBureauName;
 
-    @Column(name = "is_active")
-    private boolean active;
+  @Column(name = "is_active")
+  private boolean active;
 
-    @Column(name = "country")
-    private String country;
+  @Column(name = "country")
+  private String country;
 
-    @OneToOne(mappedBy = "creditBureau", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private CBRegisterParams creditBureauParameter;
-
-
+  @OneToOne(mappedBy = "creditBureau", cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference
+  private CBRegisterParams creditBureauParameter;
 }

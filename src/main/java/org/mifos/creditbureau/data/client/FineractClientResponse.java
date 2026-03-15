@@ -1,30 +1,28 @@
 package org.mifos.creditbureau.data.client;
 
+import java.io.Serializable;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.io.Serializable;
-import java.util.List;
-
-//Reformat data from fineract-client api for internal
+// Reformat data from fineract-client api for internal
 @Getter
 @Builder(toBuilder = true)
 @AllArgsConstructor
 public class FineractClientResponse implements Serializable {
 
-    private final long id;
+  private final long id;
 
-    private final String firstname;
+  private final String firstname;
 
-    private final String lastname;
+  private final String lastname;
 
-    private final String externalId; //RFC
+  private final String externalId; // RFC
 
-    private final String mobileNo;
+  private final String mobileNo;
 
-    private final String emailAddress;
+  private final String emailAddress;
 
-    private final List<Integer> dateOfBirth;
-
+  private final List<Integer> dateOfBirth;
 }

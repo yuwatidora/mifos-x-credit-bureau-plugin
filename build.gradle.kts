@@ -4,6 +4,8 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.3.5"
 	id("io.spring.dependency-management") version "1.1.7"
+	id("com.diffplug.spotless") version "6.25.0"
+	id("com.github.spotbugs") version "6.0.11"
 }
 
 group = "org.mifos"
@@ -13,8 +15,6 @@ java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
-}
-java {
 	sourceCompatibility = JavaVersion.VERSION_21
 	targetCompatibility = JavaVersion.VERSION_21
 }
@@ -76,4 +76,28 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+spotless {
+	java {
+		target("src/**/*.java")
+		googleJavaFormat("1.23.0")
+		removeUnusedImports()
+		trimTrailingWhitespace()
+		endWithNewline()
+	}
+}
+
+tasks.withType<com.github.spotbugs.snom.SpotBugsTask> {
+	reports {
+		create("html") {
+			required.set(true)
+		}
+		ignoreFailures = true
+	}
+}
+
+tasks.register("codeChecks") {
+	group = "verification"
+	dependsOn("spotlessApply", "spotbugsMain", "spotbugsTest")
 }

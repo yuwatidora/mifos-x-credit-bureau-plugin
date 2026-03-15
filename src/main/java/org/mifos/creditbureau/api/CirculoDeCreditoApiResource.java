@@ -13,23 +13,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class CirculoDeCreditoApiResource {
 
-    @Autowired
-    private SecurityTestService securityTestService;
+  @Autowired private SecurityTestService securityTestService;
 
-    @Autowired
-    private ConsolidatedCreditReportService consolidatedCreditReportService;
+  @Autowired private ConsolidatedCreditReportService consolidatedCreditReportService;
 
-    @POST
-    @Path("/security-test/{creditBureauId}")
-    public Response callSecurityTest(@PathParam("creditBureauId") Long creditBureauId) throws Exception{
-        return Response.ok(securityTestService.testSecurityEndpoint(creditBureauId)).build();
-    }
-    /*Sandbox connection*/
-    @POST
-    @Path("/rcc-test/{creditBureauId}")
-    public Response callRCCTest(@PathParam("creditBureauId") Long creditBureauId) throws Exception{
-        return Response.ok(consolidatedCreditReportService.testRCCSandboxEndpoint(creditBureauId).getBody()).build();
-    }
+  @POST
+  @Path("/security-test/{creditBureauId}")
+  public Response callSecurityTest(@PathParam("creditBureauId") Long creditBureauId)
+      throws Exception {
+    return Response.ok(securityTestService.testSecurityEndpoint(creditBureauId)).build();
+  }
 
-
+  /*Sandbox connection*/
+  @POST
+  @Path("/rcc-test/{creditBureauId}")
+  public Response callRCCTest(@PathParam("creditBureauId") Long creditBureauId) throws Exception {
+    return Response.ok(
+            consolidatedCreditReportService.testRCCSandboxEndpoint(creditBureauId).getBody())
+        .build();
+  }
 }

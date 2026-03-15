@@ -1,18 +1,26 @@
 package org.mifos.creditbureau.domain;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapKeyColumn;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
- * Entity representing registration parameters for a Credit Bureau.
- * This entity uses a Map-based approach to store dynamic configuration parameters.
+ * Entity representing registration parameters for a Credit Bureau. This entity uses a Map-based
+ * approach to store dynamic configuration parameters.
  */
 @Entity
 @Table(name = "cb_registration_params")
@@ -21,21 +29,21 @@ import java.util.Map;
 @NoArgsConstructor
 public class CBRegisterParams {
 
-    @Id
-    @Column(name = "credit_bureau_id")
-    private Long id;
+  @Id
+  @Column(name = "credit_bureau_id")
+  private Long id;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "credit_bureau_id")
-    @JsonBackReference
-    private CreditBureau creditBureau;
+  @OneToOne
+  @MapsId
+  @JoinColumn(name = "credit_bureau_id")
+  @JsonBackReference
+  private CreditBureau creditBureau;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "credit_bureau_registration_param_values", joinColumns = @JoinColumn(name = "param_id"))
-    @MapKeyColumn(name = "param_key")
-    @Column(name = "param_value")
-    private Map<String, String> registrationParams = new HashMap<>();
-
-
+  @ElementCollection(fetch = FetchType.EAGER)
+  @CollectionTable(
+      name = "credit_bureau_registration_param_values",
+      joinColumns = @JoinColumn(name = "param_id"))
+  @MapKeyColumn(name = "param_key")
+  @Column(name = "param_value")
+  private Map<String, String> registrationParams = new HashMap<>();
 }
